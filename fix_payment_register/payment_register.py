@@ -19,16 +19,35 @@
 #
 ##############################################################################
 
-from openerp.osv import osv
+from openerp.osv import osv, fields
 
 
 class payment_register(osv.osv):
     _inherit = 'payment.register'
+    
+    _columns = {
+        'is_cleared': fields.boolean('Cleared', readonly=True),
+    }
+    _defaults = {
+        'is_cleared': False
+    }
+    
     def copy(self, cr, uid, id, default=None, context=None):
         if context is None:
             context = {}
         context.update({'bounce_check': True})  # Assume always bounce
         return super(payment_register, self).copy(cr, uid, id, default, context=context)
+
+    def action_clear(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        self.write(cr, uid, ids, {'is_cleared': False})
+        
+    def action_unclear(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        self.write(cr, uid, ids, {'is_cleared': True})
+        
 
 payment_register()
 

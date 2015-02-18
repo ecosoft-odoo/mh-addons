@@ -35,6 +35,7 @@
     'depends' : ['payment_register'],
     'demo' : [],
     'data' : [
+        'payment_register_view.xml'
     ],
     'test' : [
     ],
