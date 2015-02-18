@@ -20,11 +20,18 @@
 ##############################################################################
 
 from openerp import tools
-from openerp.osv import osv
+from openerp.osv import fields,osv
 
 
 class account_invoice_report(osv.osv):
     _inherit = "account.invoice.report"
+
+    _columns = {
+        'line_discount': fields.float('Line Discount', readonly=True),
+    }
+
+    def _select(self):
+        return  super(account_invoice_report, self)._select() + ", sub.line_discount / cr.rate as line_discount"
 
     def _sub_select(self):
         select_str = """
@@ -52,6 +59,11 @@ class account_invoice_report(osv.osv):
                             THEN (- ail.quantity) / u.factor
                             ELSE ail.quantity / u.factor
                         END) AS product_qty,
+                    SUM(CASE
+                         WHEN ai.type::text = ANY (ARRAY['out_refund'::character varying::text, 'in_invoice'::character varying::text])
+                            THEN - (ail.discount/100 * ail.quantity * ail.price_unit) -- kittiu
+                            ELSE (ail.discount/100 * ail.quantity * ail.price_unit) -- kittiu
+                        END) AS line_discount,
                     SUM(CASE
                          WHEN ai.type::text = ANY (ARRAY['out_refund'::character varying::text, 'in_invoice'::character varying::text])
                             THEN - (ail.price_subtotal - (ai.add_disc/100 * ail.price_subtotal)) -- kittiu

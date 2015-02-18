@@ -32,6 +32,7 @@ This module includes:
 * Adding Car Plate and Driver field in Customer Invoice
 * Invoice Analysis Report, to be searchable by Product Name
 * Modified Cash Register window
+* Added Line Discount in Invoice Analysis
 
     """,
     'category': 'Accounting & Finance',
@@ -46,6 +47,7 @@ This module includes:
         'account_invoice_report_view.xml',
         'wizard/account_invoice_refund_view.xml',
         'report/cash_register_report_view.xml',
+        'report/account_invoice_report_view.xml',
     ],
     'test' : [
     ],
