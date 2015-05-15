@@ -325,7 +325,7 @@ Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 				<text><![CDATA[วันที่]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="63" y="99" width="333" height="49"/>
+				<reportElement x="63" y="99" width="338" height="57"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Monospaced" size="11" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
@@ -347,7 +347,7 @@ Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 				<text><![CDATA[ชื่อ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="63" y="79" width="403" height="20"/>
+				<reportElement x="63" y="79" width="392" height="45"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Monospaced" size="12" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
