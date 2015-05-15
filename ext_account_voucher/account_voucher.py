@@ -33,7 +33,8 @@ class account_voucher(osv.osv):
     _inherit = 'account.voucher'
     _columns = {
         'net_amount': fields.function(_net_amount, string='Net Total', type='float'),
-        'note': fields.text('Note')
+        'note': fields.text('Note'),
+        'saleperson_id': fields.related('partner_id', 'user_id', type='many2one', relation='res.users', string='Salesperson', store=True, readonly=True),
     }
 
 account_voucher()
