@@ -24,11 +24,23 @@ from openerp.osv import fields, osv
 class sale_order(osv.osv):
 
     _inherit = 'sale.order'
+    
     _columns = {
         'po_reference': fields.char('PO Reference', size=64),
         'po_date': fields.date('PO Date'),
+        'partner_name': fields.char('Partner Name'),
+        'name_phone': fields.char('Name/Phone'),
     }
     _order = 'id desc'
+
+    def onchange_partner_id(self, cr, uid, ids, part, context=None):
+        res = super(sale_order, self).onchange_partner_id(cr, uid, ids, part, context=context)
+        partner = self.pool.get('res.partner').browse(cr, uid, part)
+        if partner:
+            res['value'].update({'partner_name': partner.name})
+        else:
+            res['value'].update({'partner_name': False})
+        return res
     
     def _make_invoice(self, cr, uid, order, lines, context=None):
         """Add a PO Reference and PO Date into Invoice

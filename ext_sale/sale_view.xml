@@ -12,6 +12,10 @@
 						<field name="po_reference"/>
 						<field name="po_date"/>                 
 					</field>
+                    <field name="partner_id" position="after">
+                    	<field name="partner_name" invisible="0"/>
+						<field name="name_phone" attrs="{'invisible': [('partner_name', '!=', 'สด')], 'required': [('partner_name', '=', 'สด')]}"/>               
+					</field>
                 </data>
            </field>
         </record>	        
