@@ -19,24 +19,6 @@
 #
 ##############################################################################
 
-{
-    'name': 'Customized RML Reports for MH',
-    'version': '1.0',
-    'category': 'Reports',
-    'summary': 'Reports for modules: Sales',
-    'description': '',
-    'author': 'kittiu',
-    'website': 'http://www.ecosoft.co.th',
-    'images': [],
-    'depends': ['account_voucher'],
-    'data': [
-        'sale_report.xml',
-        'stock_report.xml',
-        'account_voucher_report.xml',
-    ],
-    'demo': [],
-    'test': [],   
-    'installable': True,
-    'active': True,
-}
+import account_voucher
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

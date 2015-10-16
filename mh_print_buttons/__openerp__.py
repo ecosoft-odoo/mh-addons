@@ -20,23 +20,30 @@
 ##############################################################################
 
 {
-    'name': 'Customized RML Reports for MH',
-    'version': '1.0',
-    'category': 'Reports',
-    'summary': 'Reports for modules: Sales',
-    'description': '',
-    'author': 'kittiu',
-    'website': 'http://www.ecosoft.co.th',
-    'images': [],
-    'depends': ['account_voucher'],
-    'data': [
-        'sale_report.xml',
-        'stock_report.xml',
-        'account_voucher_report.xml',
+    'name' : 'Print Button for MH',
+    'version' : '1.0',
+    'author' : 'Kitti U.',
+    'summary': 'Miscellenous Print Buttons MH',
+    'description': """
+
+* Print Receipt on Customer Payment also mark as printed
+
+    """,
+    'category': 'Accounting & Finance',
+    'sequence': 4,
+    'website' : 'http://www.ecosoft.co.th',
+    'images' : [],
+    'depends' : ['account_voucher',],
+    'demo' : [],
+    'data' : [
+        'security_data.xml',
+        'voucher_payment_receipt_view.xml',
     ],
-    'demo': [],
-    'test': [],   
+    'test' : [
+    ],
+    'auto_install': False,
+    'application': True,
     'installable': True,
-    'active': True,
 }
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

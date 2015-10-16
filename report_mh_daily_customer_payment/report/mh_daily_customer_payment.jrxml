@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Daily Customer Payment" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="812" leftMargin="15" rightMargin="15" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.7715610000000355"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="688"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table" lineSpacing="Single">
 		<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -20,8 +20,8 @@
 		<![CDATA[select * from
 (
 select id, voucher.number, partner_name, date, name, coalesce(is_mh_novat, False) as is_mh_novat, open_amount, paid_amount, narration,
-CASE WHEN payment_option='with_writeoff' THEN (case when open_amount-paid_amount = 0 then null else  open_amount-paid_amount end) ELSE null END writeoff_amount,
-CASE WHEN payment_option='without_writeoff' THEN (case when open_amount-paid_amount = 0 then null else  open_amount-paid_amount end) ELSE null END unpaid_amount,
+CASE WHEN payment_option='with_writeoff' THEN (case when allocate_amount-paid_amount = 0 then null else  allocate_amount-paid_amount end) ELSE null END writeoff_amount,
+CASE WHEN payment_option='without_writeoff' THEN (case when open_amount-paid_amount = 0 then null else  open_amount-paid_amount end) ELSE open_amount-allocate_amount END unpaid_amount,
 cash_amount, check_amount, transfer_amount
 from
 -- Payment Voucher
