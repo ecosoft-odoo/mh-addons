@@ -46,6 +46,7 @@ class account_invoice(osv.osv):
         'driver_id': fields.many2one('vehicle.driver', 'Car Driver'),
         'write_uid': fields.many2one('res.users', 'Modified By',readonly=True),
         'is_bangkok_customer': fields.function(_is_bangkok_customer, string='Is Bangkok?', type='boolean', store=True),
+        'no_stock_return': fields.boolean('No Stock Return')
     }
     
 
