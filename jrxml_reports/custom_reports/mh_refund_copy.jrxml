@@ -188,6 +188,9 @@
 	<field name="branch" class="java.lang.String">
 		<fieldDescription><![CDATA[partner_id/branch]]></fieldDescription>
 	</field>
+	<field name="note" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_id/comment]]></fieldDescription>
+	</field>
 	<variable name="quantity" class="java.lang.Number">
 		<variableExpression><![CDATA[$F{quantity} == null ? 0.0 : $F{quantity}]]></variableExpression>
 	</variable>

@@ -161,6 +161,9 @@
 	<field name="doc_state" class="java.lang.String">
 		<fieldDescription><![CDATA[state]]></fieldDescription>
 	</field>
+	<field name="note" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_id/comment]]></fieldDescription>
+	</field>
 	<variable name="quantity" class="java.math.BigDecimal">
 		<variableExpression><![CDATA[$F{quantity}.toString() == "" ? new BigDecimal("0.0") : $F{quantity} == null ? new BigDecimal("0.0") : new BigDecimal($F{quantity})]]></variableExpression>
 	</variable>
