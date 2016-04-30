@@ -134,8 +134,8 @@
 	<field name="email" class="java.lang.String">
 		<fieldDescription><![CDATA[partner_id/email]]></fieldDescription>
 	</field>
-	<field name="note" class="java.lang.String">
-		<fieldDescription><![CDATA[partner_id/comment]]></fieldDescription>
+	<field name="remarks" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_id/remarks]]></fieldDescription>
 	</field>
 	<variable name="string_total" class="java.lang.String">
 		<variableExpression><![CDATA[$V{amount_total}.setScale(2, java.math.RoundingMode.HALF_UP).toString()]]></variableExpression>
@@ -220,7 +220,7 @@
 					<textElement lineSpacing="Single">
 						<font fontName="Monospaced" size="11" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{note}]]></textFieldExpression>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{remarks}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>

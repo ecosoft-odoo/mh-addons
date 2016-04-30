@@ -149,8 +149,8 @@
 	<field name="main_code" class="java.lang.String">
 		<fieldDescription><![CDATA[invoice_line/product_id/product_main_code]]></fieldDescription>
 	</field>
-	<field name="note" class="java.lang.String">
-		<fieldDescription><![CDATA[partner_id/comment]]></fieldDescription>
+	<field name="remarks" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_id/remarks]]></fieldDescription>
 	</field>
 	<variable name="string_total" class="java.lang.String">
 		<variableExpression><![CDATA[(Math.round($F{Total-amount_total}*100)/100).toString()]]></variableExpression>
@@ -415,7 +415,7 @@
 				<textElement>
 					<font pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{note}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{remarks}]]></textFieldExpression>
 			</textField>
 		</band>
 	</lastPageFooter>
