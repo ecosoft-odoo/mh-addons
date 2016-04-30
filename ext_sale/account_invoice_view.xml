@@ -11,10 +11,7 @@
 						<field name="po_reference"/>
 						<field name="po_date"/>
                     </field>
-                    <field name="invoice_line" position="attributes">
-                    	<attribute name="attrs">{'readonly': [('type','not in',['out_refund','in_refund'])]}</attribute>
-            		</field>    
-           		</data>
+                </data>
            </field>
         </record>
 	</data>

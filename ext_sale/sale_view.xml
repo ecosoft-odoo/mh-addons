@@ -8,9 +8,6 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <data>
-                	<header position="inside">
-                		<button name="action_done" states="manual,progress" type="object" string="Force Done" confirm="Are you sure you want to force status to Done?" groups="base.group_user"/>
-                	</header>
                     <field name="currency_id" position="after">
 						<field name="po_reference"/>
 						<field name="po_date"/>                 
