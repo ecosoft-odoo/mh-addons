@@ -9,9 +9,9 @@
                 <data>           
                     <field name="number" position="after">
                         <div class="oe_right">
-	                        <field name="is_mh_vat" readonly="1" on_change="is_mh_vat_change(is_mh_vat, is_mh_novat)"/>
+	                        <field name="is_mh_vat" on_change="is_mh_vat_change(is_mh_vat, is_mh_novat)"/>
 	                        <label string="vat"/>
-							<field name="is_mh_novat" readonly="1" on_change="is_mh_novat_change(is_mh_vat, is_mh_novat)"/>                  
+							<field name="is_mh_novat" on_change="is_mh_novat_change(is_mh_vat, is_mh_novat)"/>                  
 	                        <label string="no-vat"/>
                     	</div>
                     </field>
@@ -22,13 +22,13 @@
                     	<group attrs="{'invisible': [('is_mh_novat', '=', True)]}" >
                     	    <h2>
                     	        <label for="number_mh_vat" />
-								<field name="number_mh_vat" readonly="1" class="oe_inline"/>                
+								<field name="number_mh_vat" class="oe_inline"/>                
                     		</h2>                  	
 						</group>  
                     	<group attrs="{'invisible': [('is_mh_novat', '=', False)]}" >
                     	    <h2>
                     	        <label string="MH No-VAT No."/>
-								<field name="number_mh_safe" readonly="1" class="oe_inline"/>                
+								<field name="number_mh_safe" class="oe_inline"/>                
                     		</h2>                    	
 						</group>                    
                     </field>

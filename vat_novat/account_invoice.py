@@ -42,11 +42,11 @@ class account_invoice(osv.osv):
     _inherit = 'account.invoice'
     _columns = {
         'billing_date': fields.date('Billing Date', select=True),
-        'is_mh_novat': fields.boolean('No-VAT', readonly=False),
-        'is_mh_vat': fields.boolean('VAT', readonly=False),
-        'number_mh': fields.char('MH Internal No.', readonly=False),
-        'number_mh_safe': fields.function(_number_mh_safe, string='MH No.', type='char', select=True, store=True, readonly=False),
-        'number_mh_vat': fields.char('MH VAT No.', readonly=False),
+        'is_mh_novat': fields.boolean('No-VAT', readonly=True),
+        'is_mh_vat': fields.boolean('VAT', readonly=True),
+        'number_mh': fields.char('MH Internal No.', readonly=True),
+        'number_mh_safe': fields.function(_number_mh_safe, string='MH No.', type='char', select=True, store=True, readonly=True),
+        'number_mh_vat': fields.char('MH VAT No.', readonly=True),
     }
     
     def invoice_validate(self, cr, uid, ids, context=None):
