@@ -21,23 +21,23 @@ where av.id = $P{id}]]>
 	<field name="invoice_date" class="java.sql.Date"/>
 	<field name="amount_unreconciled" class="java.math.BigDecimal"/>
 	<detail>
-		<band height="10" splitType="Stretch">
+		<band height="14" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="table" stretchType="RelativeToTallestObject" x="0" y="0" width="35" height="10"/>
+				<reportElement style="table" stretchType="RelativeToTallestObject" x="0" y="0" width="35" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Monospaced" size="8" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{invoice_number}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement style="table" stretchType="RelativeToTallestObject" x="74" y="0" width="55" height="10"/>
+				<reportElement style="table" stretchType="RelativeToTallestObject" x="74" y="0" width="55" height="14"/>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Monospaced" size="8" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{amount_unreconciled}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yy" isBlankWhenNull="true">
-				<reportElement style="table" stretchType="RelativeToTallestObject" x="35" y="0" width="39" height="10"/>
+				<reportElement style="table" stretchType="RelativeToTallestObject" x="35" y="0" width="39" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Monospaced" size="8" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
