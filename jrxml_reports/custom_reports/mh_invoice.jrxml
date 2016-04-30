@@ -3,7 +3,7 @@
 	<property name="ireport.layers" value="##Fri Aug 06 11:09:44 ICT 2010\nlayer.1.name=Invoice BG\nlayer.1.visible=true\nlayer.1.id=1\nlayer.0.name=Background\nlayer.0.visible=true\nlayer.0.id=0"/>
 	<property name="ireport.zoom" value="1.1000000000000045"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="379"/>
+	<property name="ireport.y" value="23"/>
 	<property name="OPENERP_RELATIONS" value="[&quot;invoice_line&quot;]"/>
 	<queryString language="xPath">
 		<![CDATA[/data/record]]>
@@ -207,7 +207,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name6}.toString() != "" ? $F{Name-name6} : $F{Name-name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="57" y="131" width="305" height="45"/>
+				<reportElement x="57" y="131" width="249" height="45"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Monospaced" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 				</textElement>
@@ -406,7 +406,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name4}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="55" y="73" width="106" height="15"/>
+				<reportElement x="57" y="29" width="106" height="15"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Monospaced" size="10" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
@@ -420,7 +420,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{Additional_Information-comment}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="24" y="159" width="397" height="20" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="57" y="70" width="359" height="20" isPrintWhenDetailOverflows="true"/>
 				<textElement>
 					<font pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
