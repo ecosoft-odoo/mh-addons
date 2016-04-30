@@ -35,7 +35,8 @@ class res_partner(osv.osv):
     
     _columns = {
         'name2': fields.char('Name 2', size=128, required=False),
-        'search_key': fields.function(_get_search_key, method=True, type='char', string='Search Key', store=True)
+        'search_key': fields.function(_get_search_key, method=True, type='char', string='Search Key', store=True),
+        'remarks': fields.text('Remarks')
     }
     
     def name_search(self, cr, uid, name, args=None, operator='ilike', context=None, limit=100):

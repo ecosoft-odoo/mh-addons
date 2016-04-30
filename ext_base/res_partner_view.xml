@@ -12,7 +12,6 @@
                     	groups="base.group_no_one"
                        	options='{"no_open": True}' />
                 </xpath>
-                
                 <xpath expr="//field[@name='parent_id']" position="before">
                 	<field name="name2"
                     	groups="base.group_no_one"
@@ -21,6 +20,9 @@
                 </xpath>
                 <field name="name" position="after">
                 	<field name="search_key"/>
+                </field>
+                <field name="website" position="after">
+                	<field name="remarks"/>
                 </field>
             </field>
         </record>
