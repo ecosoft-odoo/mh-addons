@@ -45,6 +45,7 @@ This module includes:
         'account_view.xml',
         'account_invoice_view.xml',
         'account_invoice_report_view.xml',
+        'partner_view.xml',
         'wizard/account_invoice_refund_view.xml',
         'report/cash_register_report_view.xml',
         'report/account_invoice_report_view.xml',

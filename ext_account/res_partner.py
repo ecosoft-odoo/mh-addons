@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,10 +19,21 @@
 #
 ##############################################################################
 
-import account_invoice
-import account_bank_statement
-import wizard
-import report
-import res_partner
+from osv import osv, fields
+
+class res_partner(osv.osv):
+    _inherit = "res.partner"
+    
+    def _credit_balance(self, cr, uid, ids, field_names, arg, context=None):
+        res = {}
+        for partner in self.browse(cr, uid, ids, context=context):
+            res[partner.id] = partner.credit_limit - partner.credit
+        return res
+
+    _columns = {
+        'credit_balance': fields.function(_credit_balance, string='Credit Balance')
+    }
+    
+res_partner()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
