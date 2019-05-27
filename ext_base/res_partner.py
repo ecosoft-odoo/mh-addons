@@ -26,19 +26,21 @@ from tools.translate import _
 
 class res_partner(osv.osv):
     _inherit = "res.partner"
-    
+
     def _get_search_key(self, cr, uid, ids, name, args, context=None):
         res = {}
         for parnter in self.browse(cr, uid, ids, context=context):
             res[parnter.id] = '%0*d' % (6, parnter.id)
         return res
-    
+
     _columns = {
         'name2': fields.char('Name 2', size=128, required=False),
         'search_key': fields.function(_get_search_key, method=True, type='char', string='Search Key', store=True),
-        'remarks': fields.text('Remarks')
+        'remarks': fields.text('Remarks'),
+        'latitude': fields.char('Latitude', size=128, required=False),
+        'longtitude': fields.char('Longtitude', size=128, required=False),
     }
-    
+
     def name_search(self, cr, uid, name, args=None, operator='ilike', context=None, limit=100):
         if not args:
             args = []

@@ -243,7 +243,7 @@
 	<pageHeader>
 		<band height="164" splitType="Stretch">
 			<staticText>
-				<reportElement x="1" y="1" width="311" height="22"/>
+				<reportElement x="1" y="1" width="444" height="22"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Monospaced" size="16" isBold="false" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
@@ -255,7 +255,7 @@
 					<font fontName="Monospaced" size="10" isBold="false" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[14 ซ.นราธิวาสราชนครินทร์ 12 ถ.นราธิวาสราชนครินทร์
-แขวงทุ่งวัดดอน เขตสาธร กรุงเทพฯ 10120
+แขวงทุ่งวัดดอน เขตสาทร กรุงเทพฯ 10120
 Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 			</staticText>
 			<staticText>
@@ -275,7 +275,7 @@ Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 				<reportElement x="440" y="2" width="1" height="33"/>
 			</line>
 			<staticText>
-				<reportElement x="445" y="10" width="33" height="15"/>
+				<reportElement x="445" y="10" width="40" height="19"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Monospaced" size="11" isBold="false" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
@@ -636,42 +636,42 @@ Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 $F{comment}.toString()]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement style="table_TH_2" mode="Transparent" x="294" y="20" width="57" height="20"/>
+				<reportElement style="table_TH_2" mode="Transparent" x="264" y="20" width="87" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Number"><![CDATA[$V{invoice_ref_net}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement style="table_TH_2" mode="Transparent" x="294" y="40" width="57" height="20"/>
+				<reportElement style="table_TH_2" mode="Transparent" x="264" y="40" width="87" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Number"><![CDATA[$V{invoice_ref_net}+$V{amount_net}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement style="table_TH_2" mode="Transparent" x="294" y="60" width="57" height="20"/>
+				<reportElement style="table_TH_2" mode="Transparent" x="264" y="60" width="87" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Number"><![CDATA[$V{amount_net}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="117" y="20" width="178" height="20"/>
+				<reportElement x="107" y="20" width="178" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" isBold="false" pdfFontName="Garuda-Bold.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[มูลค่าเดิม]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="117" y="40" width="178" height="20"/>
+				<reportElement x="107" y="40" width="178" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" isBold="false" pdfFontName="Garuda-Bold.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[มูลค่าที่ถูกต้อง]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="128" y="60" width="167" height="20"/>
+				<reportElement x="118" y="60" width="167" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" isBold="false" pdfFontName="Garuda-Bold.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>

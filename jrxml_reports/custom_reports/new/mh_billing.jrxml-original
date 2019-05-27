@@ -251,11 +251,11 @@ Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 				<text><![CDATA[ชื่อลูกค้า]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="64" y="93" width="360" height="20"/>
+				<reportElement x="64" y="93" width="361" height="20"/>
 				<textElement lineSpacing="Single">
-                                        <font fontName="Monospaced" size="12" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
-                                </textElement>
-                                <textFieldExpression class="java.lang.String"><![CDATA[$F{customer_name}]]></textFieldExpression>
+					<font fontName="Monospaced" size="14" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{customer_name}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="424" y="98" width="54" height="15"/>

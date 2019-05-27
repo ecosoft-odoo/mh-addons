@@ -23,10 +23,12 @@
                 </field>
                 <field name="website" position="after">
                 	<field name="remarks"/>
+                  <field name="latitude"/>
+                  <field name="longtitude"/>
                 </field>
             </field>
         </record>
-        
+
         <record id="view_partner_tree_inherit" model="ir.ui.view">
             <field name="name">view.partner.tree.inherit</field>
             <field name="model">res.partner</field>
@@ -38,7 +40,6 @@
                 </xpath>
             </field>
         </record>
-        
+
     </data>
 </openerp>
-

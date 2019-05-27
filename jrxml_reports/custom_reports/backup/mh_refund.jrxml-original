@@ -258,7 +258,7 @@
 	<pageHeader>
 		<band height="164" splitType="Stretch">
 			<staticText>
-				<reportElement x="1" y="1" width="451" height="27"/>
+				<reportElement x="1" y="1" width="311" height="22"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Monospaced" size="16" isBold="false" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
@@ -270,7 +270,7 @@
 					<font fontName="Monospaced" size="10" isBold="false" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[14 ซ.นราธิวาสราชนครินทร์ 12 ถ.นราธิวาสราชนครินทร์
-แขวงทุ่งวัดดอน เขตสาทร กรุงเทพฯ 10120
+แขวงทุ่งวัดดอน เขตสาธร กรุงเทพฯ 10120
 Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 			</staticText>
 			<staticText>
@@ -290,9 +290,9 @@ Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 				<reportElement x="440" y="2" width="1" height="33"/>
 			</line>
 			<staticText>
-				<reportElement x="441" y="10" width="37" height="18"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Monospaced" size="10" isBold="false" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				<reportElement x="445" y="10" width="33" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Monospaced" size="11" isBold="false" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[เลขที่]]></text>
 			</staticText>
@@ -481,16 +481,16 @@ Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="23" splitType="Stretch">
-			<textField pattern="#,##0.000" isBlankWhenNull="true">
-				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="352" y="3" width="67" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+		<band height="20" splitType="Stretch">
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="352" y="0" width="67" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Number"><![CDATA[$V{price_unit}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="419" y="3" width="36" height="20">
+				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="419" y="0" width="36" height="20">
 					<printWhenExpression><![CDATA[$V{discount} > 0]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
@@ -499,21 +499,21 @@ Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 				<textFieldExpression class="java.lang.Number"><![CDATA[$V{discount}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="false">
-				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="-8" y="3" width="53" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="55" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Number"><![CDATA[$V{quantity}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.000;-#,##0.000" isBlankWhenNull="true">
-				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="465" y="3" width="90" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="465" y="0" width="90" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Number"><![CDATA[$V{price_subtotal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="455" y="3" width="10" height="20">
+				<reportElement x="455" y="0" width="10" height="20">
 					<printWhenExpression><![CDATA[$V{discount} > 0]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
@@ -522,15 +522,15 @@ Tel. 0-676-0211 Fax. 0-2676-0215, 0-286-1431]]></text>
 				<text><![CDATA[%]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="80" y="3" width="272" height="20"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="80" y="0" width="272" height="20"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{desc}.replace($F{default_code},"").replace("[]","").trim() + " ["+$F{main_code}+"]"]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="45" y="3" width="40" height="20"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement style="table_TH_2" stretchType="RelativeToTallestObject" mode="Transparent" x="55" y="0" width="25" height="20"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Monospaced" size="11" pdfFontName="Garuda.ttf" pdfEncoding="Identity-H"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{uom}]]></textFieldExpression>

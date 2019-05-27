@@ -34,7 +34,7 @@ class account_voucher(osv.osv):
         'mismatch': fields.integer('Import Mismatched', readonly=True, states={'draft':[('readonly',False)]}),
         'mismatch_list': fields.char('Mismatch List', readonly=True, states={'draft':[('readonly',False)]}),
     }
-    
+
     def create(self, cr, uid, vals, context=None):
         if vals.get('import_amount', False):
             vals.update({'amount': vals['import_amount']})
@@ -43,22 +43,22 @@ class account_voucher(osv.osv):
         if vals.get('mismatch_list', False):
             vals.update({'mismatch_list': vals['mismatch_list']})
         return super(account_voucher, self).create(cr, uid, vals, context=context)
-        
+
     def write(self, cr, uid, ids, vals, context=None):
         if vals.get('import_amount', False):
-            vals.update({'amount': vals['import_amount']})   
+            vals.update({'amount': vals['import_amount']})
         if vals.get('mismatch', False):
             vals.update({'mismatch': vals['mismatch']})
         if vals.get('mismatch_list', False):
             vals.update({'mismatch_list': vals['mismatch_list']})
         return super(account_voucher, self).write(cr, uid, ids, vals, context=context)
-        
+
     def onchange_import_file(self, cr, uid, ids, import_file, rate, partner_id, journal_id, currency_id, ttype, date, payment_rate_currency_id, company_id, context=None):
         # Prepare Import FIle Data
         if not import_file:
             res = {'value': {'import_amount': False, 'mismatch': False, 'mismatch_list': False}}
             return res
-        
+
         # Read file
         file_list = base64.decodestring(import_file).split('\n')
         payment_lines = {}
@@ -67,7 +67,7 @@ class account_voucher(osv.osv):
             if line != '':
                 data = line.split(',')
                 payment_lines.update({data[0]: float(data[1])})
-                amount += float(data[1])  
+                amount += float(data[1])
 
         if context is None:
             context = {}
@@ -82,14 +82,32 @@ class account_voucher(osv.osv):
         res = self.recompute_voucher_lines_csv(cr, uid, ids, partner_id, journal_id, amount, currency_id, ttype, date, payment_lines, context=ctx)
         vals = self.onchange_rate(cr, uid, ids, rate, amount, currency_id, payment_rate_currency_id, company_id, context=ctx)
         for key in vals.keys():
-            res[key].update(vals[key])     
-            
+            res[key].update(vals[key])
+
         vals = {'value': {'import_amount': amount}}
         for key in vals.keys():
-            res[key].update(vals[key])        
-        
+            res[key].update(vals[key])
+
         return res
-        
+
+    def _remove_zero_line(self, cr, uid, res):
+        # CR
+        cr_lines = []
+        lines = res['value']['line_cr_ids']
+        for line in lines:
+            if line['amount'] != 0.0:
+                cr_lines.append(line)
+        res['value']['line_cr_ids'] = cr_lines
+        lines = res['value']['line_cr_ids']
+        # DR
+        dr_lines = []
+        lines = res['value']['line_dr_ids']
+        for line in lines:
+            if line['amount'] != 0.0:
+                dr_lines.append(line)
+        res['value']['line_dr_ids'] = dr_lines
+        return res
+
     # The original recompute_voucher_lines() do not aware of withholding and csv import file.
     # Here we will re-adjust it. As such, the amount allocation will be reduced and carry to the next lines.
     def recompute_voucher_lines_csv(self, cr, uid, ids, partner_id, journal_id, price, currency_id, ttype, date, payment_lines, context=None):
@@ -97,7 +115,7 @@ class account_voucher(osv.osv):
         line_cr_ids = res['value']['line_cr_ids']
         line_dr_ids = res['value']['line_dr_ids']
         lines = line_cr_ids + line_dr_ids
-# 
+#
 #         # This part simply calculate the advance_and_discount variable
 #         move_line_obj = self.pool.get('account.move.line')
 #         advance_and_discount = {}
@@ -109,12 +127,12 @@ class account_voucher(osv.osv):
 #                 # Add to dict
 #                 advance_and_discount.update({invoice.id: adv_disc_param})
 #         # End
-#         
+#
         # Match payment_lines with lines's move_line_id
         move_line_obj = self.pool.get('account.move.line')
         payment_lines, mismatch, mismatch_list = self.matched_payment_lines(payment_lines, lines)
         for line in lines:
-            amount, amount_wht = 0.0, 0.0 
+            amount, amount_wht = 0.0, 0.0
             if line['move_line_id'] in payment_lines:
                 # Amount to reconcile, always positive value -> make abs(..)
                 amount_alloc = abs(payment_lines[line['move_line_id']]) or 0.0
@@ -131,14 +149,16 @@ class account_voucher(osv.osv):
             # Adjust remaining
             line['amount'] = amount+amount_wht
             line['amount_wht'] = -amount_wht
-            line['reconcile'] = line['amount'] == line['amount_unreconciled']
-            
+            line['reconcile'] = round(line['amount'], 2) == round(line['amount_unreconciled'], 2)
+
         vals = {'value': {'mismatch': mismatch, 'mismatch_list': mismatch_list}}
         for key in vals.keys():
             res[key].update(vals[key])
-             
+
+        res = self._remove_zero_line(cr, uid, res)
+
         return res
-    
+
     def matched_payment_lines(self, payment_lines, move_lines):
         new_payment_lines = {}
         mismatch = 0
@@ -157,6 +177,15 @@ class account_voucher(osv.osv):
                     mismatch_list = ('%s,%s') % (mismatch_list, key)
                 mismatch += 1
         return new_payment_lines, mismatch, mismatch_list
+
+    def onchange_amount(self, cr, uid, ids, amount, rate, partner_id, journal_id, currency_id, ttype, date, payment_rate_currency_id, company_id, context=None):
+        res = super(account_voucher, self).onchange_amount(cr, uid, ids, amount, rate, partner_id, journal_id, currency_id, ttype, date, payment_rate_currency_id, company_id, context=context)
+        # if amount not specified yet, remove line_ids
+        if not amount:
+            res['value']['line_cr_ids'] = []
+            res['value']['line_dr_ids'] = []
+        return res
+
 
 account_voucher()
 
