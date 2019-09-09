@@ -23,7 +23,12 @@ from osv import fields, osv
 from openerp import netsvc
 
 class sale_order(osv.osv):
-    
+
+    def _prepare_order_picking(self, cr, uid, order, context=None):
+        res = super(sale_order, self)._prepare_order_picking(cr, uid, order, context=context)
+        res['x_shipper'] = order.x_shipper
+        return res
+
     def _is_bangkok_customer(self, cursor, user, ids, name, arg, context=None):
         res = {}
         cursor.execute("select pick.id, (case when bkk.id is not null then true else false end) is_bkk \
@@ -37,9 +42,13 @@ class sale_order(osv.osv):
         for r in rs:
             res[r[0]] = r[1]
         return res
-        
+
     _inherit = 'sale.order'
-    
+
+    _columns = {
+        'x_shipper': fields.char('Shipper Text'),
+    }
+
     # kittiu. This is a complete overwrite of sale_stock.sale_order._create_pickings_and_procurements
     def _create_pickings_and_procurements(self, cr, uid, order, order_lines, picking_id=False, context=None):
         """Create the required procurements to supply sales order lines, also connecting
@@ -78,7 +87,7 @@ class sale_order(osv.osv):
                         # start kittiu
                         picking_obj.write(cr, uid, [picking_id], {'po_reference': order.po_reference or False,
                                                           'po_date': order.po_date or False
-                                                          }, context)                        
+                                                          }, context)
                         # end kittiu
                     move_id = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id, date_planned, context=context))
                 else:

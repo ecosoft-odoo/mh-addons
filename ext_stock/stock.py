@@ -22,7 +22,7 @@
 from osv import fields, osv
 
 class stock_picking(osv.osv):
-    
+
     def _is_bangkok_customer(self, cursor, user, ids, name, arg, context=None):
         res = {}
         cursor.execute("select pick.id, (case when bkk.id is not null then true else false end) is_bkk \
@@ -36,29 +36,30 @@ class stock_picking(osv.osv):
         for r in rs:
             res[r[0]] = r[1]
         return res
-                
+
     _inherit = 'stock.picking'
-    
+
     _columns = {
         'is_bangkok_customer': fields.function(_is_bangkok_customer, string='Is Bangkok?', type='boolean', store=True),
         'po_reference': fields.char('PO Reference', size=64, readonly=True, states={'draft': [('readonly', False)]}),
         'po_date': fields.date('PO Date', readonly=True, states={'draft': [('readonly', False)]}),
+        'x_shipper': fields.char('Shipper Text'),
     }
-    
+
 stock_picking()
 
 class stock_picking_out(osv.osv):
-    
+
     def _is_bangkok_customer(self, cursor, user, ids, name, arg, context=None):
         return self.pool.get('stock.picking')._is_bangkok_customer(cursor, user, ids, name, arg, context=context)
-        
+
     _inherit = 'stock.picking.out'
-    
+
     _columns = {
         'is_bangkok_customer': fields.function(_is_bangkok_customer, string='Is Bangkok?', type='boolean', store=True),
         'po_reference': fields.char('PO Reference', size=64, readonly=True, states={'draft': [('readonly', False)]}),
         'po_date': fields.date('PO Date', readonly=True, states={'draft': [('readonly', False)]}),
     }
-    
+
 stock_picking_out()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
