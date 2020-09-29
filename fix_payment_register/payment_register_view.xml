@@ -32,9 +32,27 @@
               		<field name="company_id" position="before">
               			<field name="is_cleared" invisible="0" />
               		</field>
+			<field name="partner_id" position="after">
+				<field name="property_payment_term"/>
+			</field>
                 </data>
             </field>
         </record>
         
+        <record id="view_payment_register_tree_ext" model="ir.ui.view">
+            <field name="name">view.payment.register.tree.ext</field>
+            <field name="inherit_id" ref="payment_register.view_payment_register_tree" />
+            <field name="model">payment.register</field>
+            <field name="arch" type="xml">
+                <data>
+                        <field name="partner_id" position="after">
+                                <field name="property_payment_term"/>
+                        </field>
+                </data>
+            </field>
+        </record>
+
+
+
     </data>
 </openerp>

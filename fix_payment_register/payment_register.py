@@ -27,6 +27,7 @@ class payment_register(osv.osv):
     
     _columns = {
         'is_cleared': fields.boolean('Cleared', readonly=True),
+        'property_payment_term': fields.related('partner_id', 'property_payment_term', type='many2one', relation='account.payment.term', string='Credit Term', store=True, readonly=True),
     }
     _defaults = {
         'is_cleared': False
