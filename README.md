@@ -8,3 +8,4 @@ System Requirement
 Remarks
 
 * pip install psycopg2-binary==2.7.4
+* pip install Python-Chart
