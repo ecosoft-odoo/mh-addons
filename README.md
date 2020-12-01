@@ -4,10 +4,15 @@ System Requirement
 
 * Python2.7 -- https://tecadmin.net/install-python-2-7-on-ubuntu-and-linuxmint/
 * Odoo 7 -- Get from http://nightly.odoo.com/7.0/nightly/src/ OR `git clone https://github.com/odoo/odoo --dept=1 -b 7.0 odoo7`
+* Restore MH database -- `createdb MH`, `psql -U <user> MH -f MH.sql`
+
+Start Up
+
+> ./openerp-server -r <dbuser> --addons-path=openerp/addons,addons,../mh-addons,../mh-addons/common/revised-addons,../mh-addons/common/ecosoft-addons --db-filter=MH
 
 Remarks
 
-* pip install psycopg2-binary==2.7.4
+* pip install psycopg2-binary==2.4.5
 * pip install Python-Chart
 
 Python Packages from MH Server
