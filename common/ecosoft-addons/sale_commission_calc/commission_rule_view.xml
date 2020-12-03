@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <openerp>
     <data>
-        
+
 		<!-- COMMISSION RULE -->
 
         <record model="ir.ui.view" id="view_commission_rule_tree">
@@ -39,8 +39,8 @@
                     	    	     attrs="{'invisible':[('type','!=','percent_product_step')]}"/>
                     	    	<label string="Commission Rate is defined for each product category. Please go to Product Category window to define it"
                     	    	     attrs="{'invisible':[('type','!=','percent_product_category')]}"/>
-							</group>	         
-							<group>           
+							</group>
+							<group>
                     	    	<field name="fix_percent" attrs="{'invisible':[('type','!=','percent_fixed')]}"/>
 							</group>
 							<field name="rule_rates" widget="one2many_list" colspan="4" nolabel="1"  attrs="{'invisible':[('type','not in',('percent_amount'))]}">
@@ -50,8 +50,8 @@
 	                                <field name="percent_commission"/>
 	                            </tree>
 	                        </field>
-		            	</page>	        	
-                    	<page string="Applied To" >     
+		            	</page>
+                    	<page string="Applied To" >
                     	    <group>
 		                    	<group>
 			                    <separator colspan="2" string="Teams"/>
@@ -60,7 +60,7 @@
 			                            	<field name="name"/>
 			                            </tree>
 			                        </field>
-			                    </group>     
+			                    </group>
 		                    	<group>
 			                    <separator colspan="2" string="Salespersons"/>
 			                       <field name="salesperson_ids" nolabel="1" readonly="1">
@@ -68,9 +68,9 @@
 			                            	<field name="name"/>
 			                            </tree>
 			                        </field>
-			                    </group>  		                    
-			                </group>        
-		            	</page>						
+			                    </group>
+			                </group>
+		            	</page>
 		            </notebook>
 				</sheet>
                 </form>
@@ -93,8 +93,8 @@
                 <tree string="Product Rates" editable="top">
                     <field name="name" readonly="1"/>
                     <field name="type" readonly="1"/>
-                    <field name="uom_id" readonly="1"/>      		
-                    <field name="limit_price"/>                  		
+                    <field name="uom_id" readonly="1"/>
+                    <field name="limit_price"/>
                     <field name="percent_commission"/>
                     <field name="active" readonly="1"/>
                 </tree>
@@ -106,7 +106,7 @@
             <field name="res_model">product.product</field>
             <field name="view_type">form</field>
             <field name="view_id" ref="view_product_rate"/>
-        </record>        
+        </record>
 
         <!-- Product Rates Price Step-->
         <record id="view_product_rate_price_step_tree" model="ir.ui.view">
@@ -116,7 +116,7 @@
                 <tree string="Product Rate Price Step">
                     <field name="name" />
                     <field name="type" readonly="1"/>
-                    <field name="uom_id" readonly="1"/>                  		
+                    <field name="uom_id" readonly="1"/>
                     <field name="limit_price"/>
                     <field name="percent_commission" string="Base Commission"/>
                     <field name="active" readonly="1"/>
@@ -132,11 +132,11 @@
                 	<sheet>
                     <h1>
                         <field name="name" class="oe_inline" readonly="1"/>
-                    </h1>        
+                    </h1>
                     <group>
                     	<group>
 	                        <field name="type" class="oe_inline" readonly="1"/>
-	                        <field name="uom_id" class="oe_inline" readonly="1"/>                  		
+	                        <field name="uom_id" class="oe_inline" readonly="1"/>
                     	</group>
                     	<group>
                     	</group>
@@ -159,12 +159,12 @@
 	            </form>
             </field>
         </record>
-        
+
         <record id="action_product_rate_price_step" model="ir.actions.act_window">
             <field name="name">Product Rate Price Step</field>
             <field name="res_model">product.product</field>
             <field name="view_type">form</field>
-        </record>        
+        </record>
 
         <record id="action_product_rate_price_step_view1" model="ir.actions.act_window.view">
             <field name="view_mode">tree</field>
@@ -177,7 +177,7 @@
             <field name="view_id" ref="view_product_rate_price_step_form"/>
             <field name="act_window_id" ref="action_product_rate_price_step"/>
         </record>
-        
+
         <!-- Product Category Rates -->
         <record id="view_product_categ_rate" model="ir.ui.view">
             <field name="model">product.category</field>
@@ -194,20 +194,75 @@
             <field name="res_model">product.category</field>
             <field name="view_type">form</field>
             <field name="view_id" ref="view_product_categ_rate"/>
-        </record>        
-        
+        </record>
+
+        <!-- Promo Code -->
+        <record id="view_promo_code_tree" model="ir.ui.view">
+            <field name="name">promo.code.tree</field>
+            <field name="model">promo.code</field>
+            <field name="arch" type="xml">
+                <tree string="Promo Codes" editable="top">
+                    <field name="product_id"/>
+                    <field name="promo_code"/>
+                    <field name="percent_commission"/>
+                    <field name="promo_description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_promo_code_form" model="ir.ui.view">
+            <field name="name">promo.code.form</field>
+            <field name="model">promo.code</field>
+            <field name="arch" type="xml">
+                <form string="Promo Codes" version="7.0">
+                	<sheet>
+                        <group>
+                        	<group>
+                                <field name="product_id"/>
+                                <field name="percent_commission"/>
+                        	</group>
+                        	<group>
+                                <field name="promo_code"/>
+                                <field name="promo_description"/>
+                        	</group>
+                    	</group>
+		        	</sheet>
+	            </form>
+            </field>
+        </record>
+
+        <record id="action_promo_code" model="ir.actions.act_window">
+            <field name="name">Promo Codes</field>
+            <field name="res_model">promo.code</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_promo_code_view1" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_promo_code_tree"/>
+            <field name="act_window_id" ref="action_promo_code"/>
+        </record>
+
+        <record id="action_promo_code_view2" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_promo_code_form"/>
+            <field name="act_window_id" ref="action_promo_code"/>
+        </record>
+
         <!-- Menu -->
-        
+
         <menuitem name="Rules" id="menu_commission_calc_rule" parent="menu_commission_calc" sequence="70" groups="sale_commission_calc.group_sale_commission_calc_user"/>
         <menuitem name="Rates" id="menu_commission_calc_rate" parent="menu_commission_calc" sequence="75" groups="sale_commission_calc.group_sale_commission_calc_user"/>
-        	
-        <menuitem name="Commission Rules" id="menu_commission_rule" parent="menu_commission_calc_rule" 
+
+        <menuitem name="Commission Rules" id="menu_commission_rule" parent="menu_commission_calc_rule"
             action="action_commission_rule_form" sequence="10" groups="sale_commission_calc.group_sale_commission_calc_user"/>
-        <menuitem name="Product Rates" id="menu_product_rate" parent="menu_commission_calc_rate" 
+        <menuitem name="Product Rates" id="menu_product_rate" parent="menu_commission_calc_rate"
             action="action_product_rate"  sequence="20" groups="sale_commission_calc.group_sale_commission_calc_user"/>
-        <menuitem name="Product Rate Price Step" id="menu_product_rate_price_step" parent="menu_commission_calc_rate" 
+        <menuitem name="Product Rate Price Step" id="menu_product_rate_price_step" parent="menu_commission_calc_rate"
             action="action_product_rate_price_step"  sequence="25" groups="sale_commission_calc.group_sale_commission_calc_user"/>
-        <menuitem name="Product Category Rates" id="menu_product_categ_rate" parent="menu_commission_calc_rate" 
+        <menuitem name="Product Category Rates" id="menu_product_categ_rate" parent="menu_commission_calc_rate"
             action="action_product_categ_rate"  sequence="30" groups="sale_commission_calc.group_sale_commission_calc_user"/>
+        <menuitem name="Promo Codes" id="menu_promo_code" parent="menu_commission_calc_rate"
+            action="action_promo_code"  sequence="35" groups="sale_commission_calc.group_sale_commission_calc_user"/>
     </data>
 </openerp>

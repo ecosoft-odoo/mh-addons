@@ -142,4 +142,14 @@ class account_invoice(osv.osv):
 
 account_invoice()
 
+
+class account_invoice_line(osv.osv):
+
+    _inherit = 'account.invoice.line'
+    _columns = {
+        'promo_code': fields.char('Promo Code', size=64, readonly=False),
+    }
+
+account_invoice_line()
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

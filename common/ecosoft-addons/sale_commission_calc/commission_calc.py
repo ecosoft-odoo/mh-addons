@@ -120,6 +120,12 @@ class commission_worksheet(osv.osv):
         }
         return res
 
+    def _get_percent_commission(self, cr, uid, product_id, promo_code, percent_commission):
+        promo_code_record = self.env['promo.code'].search(cr, uid, [('product_id', '=', product_id.id), ('promo_code', '=', promo_code)], limit=1)
+        if promo_code_record:
+            return promo_code_record.percent_commission
+        return percent_commission
+
     def _get_base_amount(self, invoice):
         # Generic case
         base_amt = invoice.amount_untaxed
@@ -162,6 +168,9 @@ class commission_worksheet(osv.osv):
             commission_amt = 0.0
             for line in invoice.invoice_line:
                 percent_commission = line.product_id.categ_id.percent_commission
+                if line.promo_code:
+                    percent_commission = self._get_percent_commission(
+                        self, cr, uid, line.product_id, line.promo_code, percent_commission)
                 commission_rate = percent_commission and percent_commission / 100 or 0.0
                 if commission_rate:
                     commission_amt += line.price_subtotal * commission_rate
@@ -186,6 +195,9 @@ class commission_worksheet(osv.osv):
             for line in invoice.invoice_line:
                 # Make sure the product price each the limit_price, before assign commission
                 percent_commission = (line.price_unit >= line.product_id.limit_price) and line.product_id.percent_commission or 0.0
+                if line.promo_code:
+                    percent_commission = self._get_percent_commission(
+                        self, cr, uid, line.product_id, line.promo_code, percent_commission)
                 commission_rate = percent_commission and percent_commission / 100 or 0.0
                 if commission_rate:
                     commission_amt += line.price_subtotal * commission_rate
@@ -227,7 +239,11 @@ class commission_worksheet(osv.osv):
                         else:
                             continue
                 # --
+                if line.promo_code:
+                    percent_commission = self._get_percent_commission(
+                        self, cr, uid, line.product_id, line.promo_code, percent_commission)
                 commission_rate = percent_commission and percent_commission / 100 or 0.0
+
                 if commission_rate:
                     commission_amt += line.price_subtotal * commission_rate
             res = self._prepare_worksheet_line(worksheet, invoice, base_amt, commission_amt, context=context)

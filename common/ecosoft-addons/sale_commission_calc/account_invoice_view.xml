@@ -22,6 +22,9 @@
                         </field>
                     </group>
                 </field>
+                <xpath expr="/form/sheet/notebook//field[@name='invoice_line']/tree/field[@name='name']" position="after">
+                    <field name="promo_code" readonly="False"/>
+                </xpath>
             </field>
         </record>
     </data>

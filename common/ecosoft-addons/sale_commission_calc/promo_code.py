@@ -19,13 +19,20 @@
 #
 ##############################################################################
 
-import commission_calc
-import commission_rule
-import product
-import account_invoice
-import payment_register
-import promo_code
-import sale
-import wizard
+from openerp.osv import fields, osv
+
+
+class promo_code(osv.osv):
+
+    _name = "promo.code"
+    _columns = {
+        'product_id': fields.many2one('product.product', 'Product', ondelete='cascade', select=True),
+        'promo_code': fields.char('Promo Code', size=64, required=True),
+        'percent_commission': fields.float('Commission (%)', digits=(16, 2)),
+        'promo_description': fields.char('Description', size=128),
+    }
+    _order = 'product_id'
+
+promo_code()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

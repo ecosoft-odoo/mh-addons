@@ -19,13 +19,16 @@
 #
 ##############################################################################
 
-import commission_calc
-import commission_rule
-import product
-import account_invoice
-import payment_register
-import promo_code
-import sale
-import wizard
+from openerp.osv import fields, osv
+
+
+class sale_order_line(osv.osv):
+
+    _inherit = 'sale.order.line'
+    _columns = {
+        'promo_code': fields.char('Promo Code', size=64, readonly=False),
+    }
+
+sale_order_line()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

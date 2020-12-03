@@ -100,6 +100,7 @@ Commission Rates
 * **Product Rates:** product rate configuration window
 * **Product Rate Price Step:** product rate by sales unit price configuration window
 * **Product Category Rates:** product category rate configuration window
+* **Promo Codes:** promo codes configuration window
 
 Configuration
 ~~~~~~~~~~~~~
@@ -140,6 +141,7 @@ Group / Securities
         'commission_rule_view.xml',
         'account_invoice_view.xml',
         'commission_calc_sequence.xml',
+        'sale_view.xml',
         'wizard/update_invoice_commission_view.xml',
         'wizard/generate_commission_worksheet_view.xml',
     ],
